@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				{% for clan in clans %}
+					<h2 class="text-center">
+						<strong>
+							{{clan.name}} RECORD
+						</strong>
+					</h2>
+					<div class="table100 ver3 m-b-110">
+						<div class="table100-head">
+							<table>
+								<thead>
+									<tr class="row100 head">
+										<th class="cell100 column1">Name</th>
+										<th class="cell100 column2">Level</th>
+										<th class="cell100 column3">Gold Donation</th>
+										<th class="cell100 column4">Gold Debt</th>
+										<th class="cell100 column5">Advanced Gold Donation</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+
+						<div class="table100-body js-pscroll">
+							<table>
+								<tbody>
+									{% for character in characters %}
+										{% if character.clan == clan %}
+											<tr class="row100 body">
+												<td class="cell100 column1">
+													<h5>{{character.name}}</h5>
+												</td>
+												<td class="cell100 column2">
+													<h5>
+														{{character.level}}
+													</h5>
+												</td>
+												<td class="cell100 column3">
+													<h5>
+														{{character.gold_donation}}
+													</h5>
+												</td>
+												<td class="cell100 column4">
+													<h5>
+														{{character.gold_debt}}
+													</h5>
+												</td>
+												<td class="cell100 column5">
+													<h5>
+														{{character.advanced_gold}}
+													</h5>
+												</td>
+											</tr>
+										{% endif %}
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				{% endfor %}
+				<h2 class="text-center">
+					<strong>
+						MEMBERS WHO LEFT THE CLAN
+					</strong>
+				</h2>
+				<div class="table100 ver3 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">Name</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+								{% for character in characters %}
+									{% if character.clan is None %}
+									<tr class="row100 body">
+										<td class="cell100 column1">
+											<h5>
+												{{character.name}}
+											</h5>
+										</td>
+									</tr>
+									{% endif %}
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock %}
